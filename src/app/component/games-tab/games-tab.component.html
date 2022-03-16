@@ -1,0 +1,46 @@
+<div class="game-tab">
+  <mat-tab-group mat-align-tabs="start" backgroundColor="primary">
+    <mat-tab label="About">
+      <p class="game-tabs-par" *ngIf="gametab.parent_platforms.length > 0"> Platforms:
+        <span *ngFor ="let game of gametab.parent_platforms; let last = last">
+          {{game.platform.name}}
+        <span *ngIf="!last">,</span></span>
+      </p>
+      <p class="game-tabs-par" *ngIf="gametab.publishers.length > 1">
+        Publishers:
+        <span *ngFor ="let publisher of gametab.publishers; let lastval = last">{{publisher.name}} <span *ngIf="!lastval">,</span></span>
+      </p>
+      <p class="game-tabs-par">
+        Website:
+        <a class="game-tabs-link" href="{{gametab.website}}" target="_blank">{{gametab.website}} </a>
+      </p>
+      <div class="game-description" [innerHTML]="gametab.description">
+      </div >
+      <p class="game-tabs-vote">
+
+        <ng-container *ngFor="let rating of gametab.ratings">
+          <span *ngIf="rating.title == 'exceptional'">
+            <mat-icon class="game-votes-up">thumb_up</mat-icon>
+            <span class="game-votes-count">{{rating.count || 0}}</span>
+          </span>
+          <span *ngIf="rating.title == 'skip'">
+            <mat-icon class="game-votes-down">thumb_down</mat-icon>
+            <span class="game-votes-count">{{rating.count || 0}}</span>
+          </span>
+        </ng-container>
+
+      </p>
+
+
+    </mat-tab>
+    <mat-tab label="Screenshots" *ngIf="gametab.screenshots.length > 1">
+      <img style="width: 100%;" *ngFor="let screenshot of gametab.screenshots" [src]="screenshot.image" alt="" class="game-screenshots" alt="screenshot" />
+    </mat-tab>
+    <mat-tab label="Trailors">
+      <video src="" alt="" class="game-trailors" controls alt="trailors" >
+        <source src="" alt="" class="game-trailors">
+        Your browser does not support video tag.
+      </video>
+    </mat-tab>
+  </mat-tab-group>
+</div>

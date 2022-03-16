@@ -1,0 +1,26 @@
+.game-tab{
+  background: rgb(63 81 181 / 61%);
+  color: #fff;padding: 10px; text-align: left;
+}
+.game-tabs-par,.game-description,.game-tabs-vote{
+  padding: 20px 20px 0 20px;
+  margin-bottom: 0;
+}
+.game-tabs-link{
+  color: #fff;
+}
+mat-tab{
+  justify-content: center;
+}
+.game-votes-up{
+  color: #5ee432;
+}
+.game-votes-down{
+  color: #ef4655;
+}
+.game-votes-count{
+  vertical-align: super;
+}
+.game-trailors{
+  width: 100%;
+}

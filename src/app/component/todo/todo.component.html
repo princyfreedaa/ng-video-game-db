@@ -1,0 +1,13 @@
+<div id="todoapp">
+  <h1>Todo List</h1>
+</div>
+<form  (ngSubmit)="onSubmit(f)" #f="ngForm">
+ <input type="text" name="todoapp" id="todo" placeholder="type something..."
+ [(ngModel)]="inputTodo">
+ <button type="submit">Add</button>
+</form>
+<ul >
+  <li  *ngFor="let todoval of todos; let i = index" class="{{todoval.completed ?'line-through':'none'}}" >
+     <span>{{i+1}}.</span>&nbsp;<span (click)="toggleDone(i)">{{todoval.content}} </span>
+     <button class="delete" (click)="delete(i)">Remove</button></li>
+</ul>

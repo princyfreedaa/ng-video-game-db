@@ -1,0 +1,45 @@
+.serarch-container{
+  width: 100%;
+  height: 60px;
+  background-color: #323a45;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: fixed;
+  z-index: 111;
+}
+.serarch-container form{
+  width: 100%;
+  margin: 0;
+}
+.serarch-container form input{
+  padding:10px;
+  margin: 0 0 0 10px;
+  color: #000;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  outline: none;
+  border: none;
+  width: 300px;
+}
+.serarch-container form button{
+  padding:10px;
+  color: #000;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  outline: none;
+  border: none;
+  transition-duration: .3s;
+}
+.serarch-container form button:hover{
+  color: #3f51b5;
+  background-color: #fff;
+  border: 1px solid #3f51b5;
+}
+.logo{
+  margin: 0 0 0 10px;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+}

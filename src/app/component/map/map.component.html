@@ -1,0 +1,10 @@
+<p>map works!</p>
+
+<h1>{{ title }}</h1>
+
+<!-- this creates a google map on the page with the given lat/lng from -->
+<!-- the component as the initial center of the map: -->
+<agm-map [latitude]="lat" [longitude]="lng">
+  <agm-marker [latitude]="lat" [longitude]="lng" url="http://jbdemonte.github.io/angular-google-maps-native/assets/rungis-desc.kml"></agm-marker>
+  <agm-kml-layer [url]="'https://sites.google.com/site/freeparkingburlington/home/freeParking.kml'"> </agm-kml-layer>
+</agm-map>

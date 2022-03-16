@@ -1,0 +1,64 @@
+.details-wrapper {
+  max-width: 900px;
+  margin: 20px auto;
+  position: relative;
+}
+.details-wrapper mwl-gauge{
+  width: 150px;
+  height: 150px;
+  display: block;
+  padding: 10px;
+}
+.details-wrapper mwl-gauge .dial{
+  stroke-width: 10;
+ }
+ .details-wrapper mwl-gauge .value{
+  stroke-dasharray: none;
+  stroke-width: 13;
+ }
+ .details-wrapper mwl-gauge .value-text{
+  fill:#fff;
+  font-weight: 700;
+  font-size: 24px;
+ }
+ .details .game-gauage{
+  position: absolute;
+  top: 50px;
+  right: 0;
+ }
+ .details .game-gauge-label{
+   font-size: 20px;
+   color: #fff;
+   position: relative;
+   bottom: 60px;
+ }
+ .details .game-banner{
+    height: 442px;
+    overflow: hidden;
+ }
+ .details .game-banner-img{
+   width: 100%;
+   filter: blur(5px);
+ }
+ .details .game-content{
+   text-align: center;
+   position: relative;
+   top: -200px;
+ }
+ .details .game-header,.details .game-header-title{
+  /* font-size: 70px; */
+  color: #fff;font-weight: 700;
+  line-height: 30px;
+  white-space: nowrap;
+ }
+ .details .game-header{
+   color: #fff;
+   font-weight: 700;
+ }
+ .release-date,
+ .details .game-header-genres{
+  color: #fff;
+  font-weight: 700;
+ }
+
+

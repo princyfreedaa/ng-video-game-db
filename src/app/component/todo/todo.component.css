@@ -1,0 +1,11 @@
+h1{
+  text-align: center;
+}
+li {
+  display: list-item;
+  list-style: none;
+  list-style-position: inside;
+}
+.line-through{
+  text-decoration: line-through;
+}
