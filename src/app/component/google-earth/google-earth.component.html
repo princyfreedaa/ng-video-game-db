@@ -1,0 +1,15 @@
+<input type='file' accept=".kml,.kmz" (change)="fileChanged($event)">
+
+<ac-map>
+   <ac-layer acFor="let point of entities$" [context]="this" [show]="show">
+
+    <ac-point-desc props="{
+        position: point.entity,
+        pixelSize : 10,
+        outlineColor: Cesium.Color.CORNFLOWERBLUE,
+        outlineWidth: 2,
+        color:  getColor(plane)
+     }">
+    </ac-point-desc>
+  </ac-layer>
+</ac-map>

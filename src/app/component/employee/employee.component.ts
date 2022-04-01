@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef, MatTableDataSource } from '@angular/material';
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { PeriodicElement } from 'src/app/employee';
 import { ApiService } from 'src/app/services/api.service';
 import { HttpService } from 'src/app/services/http.service';
-import { UserProfileComponent } from '../user-profile/user-profile.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 
 
@@ -15,18 +15,20 @@ import { UserProfileComponent } from '../user-profile/user-profile.component';
 })
 export class EmployeeComponent implements OnInit {
 
-  dialogValues
-
-  empAdded = new Subject<PeriodicElement>();
-
+  private subscriptionName: Subscription;
    ELEMENT_DATA: PeriodicElement[] = [];
 
   value : any = {};
-
+  dialogValues
   displayedColumns: string[] = ['EmployeeId', 'firstName','lastName', 'email_id', 'mobile','salary', 'action'];
   dataSource = new MatTableDataSource<PeriodicElement>(this.ELEMENT_DATA);
 
-  constructor(public dialog: MatDialog, private apiService : ApiService) {}
+  constructor(public dialog: MatDialog, private apiService : ApiService) {
+    this.subscriptionName= this.apiService.getUpdate().subscribe
+    (data => { //message contains the data sent from service
+    this.dataSource.data = data;
+    });
+  }
 
   ngOnInit() {
 
@@ -39,7 +41,7 @@ this.getEmp();
       console.log(data);
       console.log(`Employee with Id = ${id}deleted`)
     });
-    //this.getEmp();
+    this.getEmp();
   }
 
   openDialog(){
@@ -48,7 +50,6 @@ this.getEmp();
     dialogConfig.autoFocus = true;
     let dialogRef = this.dialog.open(UserProfileComponent,dialogConfig);
   }
-
 
   onEdit(id:number){
 
@@ -67,11 +68,6 @@ this.getEmp();
       salary: this.dialogValues.salary || '',
   };
   let dialogRef = this.dialog.open(UserProfileComponent,dialogConfig);
-
-  dialogRef.afterClosed().subscribe(result => {
-    this.value = result;
-  });
-
   });
   }
 
@@ -81,6 +77,9 @@ this.getEmp();
   });
   }
 
+  ngOnDestroy() { // It's a good practice to unsubscribe to ensure no memory leaks
+    this.subscriptionName.unsubscribe();
+  }
 
 }
 

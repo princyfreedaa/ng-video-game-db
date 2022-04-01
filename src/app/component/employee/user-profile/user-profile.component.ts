@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
-import { MatDialogRef, MatTableDataSource} from "@angular/material";
+import { MatDialog,MatDialogRef, MatTableDataSource} from "@angular/material";
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { Subject } from 'rxjs/internal/Subject';
@@ -18,8 +18,12 @@ export class UserProfileComponent implements OnInit {
   myForm: FormGroup;
   description:string;
   userObj = new user();
+  MatDialog: any;
 
-  constructor( private fb: FormBuilder, private dialogRef: MatDialogRef<UserProfileComponent>,private apiServe:ApiService,@Inject(MAT_DIALOG_DATA) public data: any) { }
+  constructor( private dialog: MatDialog, private fb: FormBuilder, private dialogRef: MatDialogRef<UserProfileComponent>,private apiServe:ApiService,@Inject(MAT_DIALOG_DATA) public data: any,) {
+
+
+   }
 
   ELEMENT_DATA: PeriodicElement[] = [];
   dataSource = new MatTableDataSource<PeriodicElement>(this.ELEMENT_DATA);
@@ -75,8 +79,6 @@ reactiveForm() {
 
 submitForm() {
 
-
-
   this.userObj.firstName = this.myForm.value.firstName;
   this.userObj.lastName = this.myForm.value.lastName;
   this.userObj.email = this.myForm.value.email;
@@ -96,10 +98,23 @@ submitForm() {
 
   }
   this.editMode == false;
+
+
   this.apiServe.getEmployee().subscribe((data:PeriodicElement[]) => {
-    return this.dataSource.data = data;
-  });
+    console.log(data);
+    this.sendUpdate(data);
+
+        });
+
+
+
+
+
+
 }
 
+sendUpdate(dataval:PeriodicElement[]): void {
+  this.apiServe.sendUpdate(dataval);
 
+}
 }

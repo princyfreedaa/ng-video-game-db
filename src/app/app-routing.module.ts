@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DetailsComponent } from './component/details/details.component';
 import { EmployeeComponent } from './component/employee/employee.component';
+import { GoogleEarthComponent } from './component/google-earth/google-earth.component';
 import { HomeComponent } from './component/home/home.component';
 import { MapComponent } from './component/map/map.component';
 import { TodoComponent } from './component/todo/todo.component';
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path: 'todo', component:TodoComponent},
   {path: 'employee', component:EmployeeComponent},
   {path: 'map', component:MapComponent},
+  {path: 'earthmap', component:GoogleEarthComponent},
 ];
 
 @NgModule({

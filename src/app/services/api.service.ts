@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/internal/operators/map';
 import { PeriodicElement } from '../employee';
 
@@ -13,6 +13,8 @@ export class ApiService {
   empAdded = new Subject<PeriodicElement[]>();
   private getallEmployees: PeriodicElement[] = [];
   constructor(private http: HttpClient) { }
+
+  private subjectName = new Subject<any>(); //need to create a subject
 
   postEmployee(data:any){
     return this.http.post<any>('http://localhost:3000/posts', data).pipe(map((res:any) => {
@@ -44,5 +46,14 @@ deleteEmployee(id){
   }))
 }
 
+
+
+sendUpdate(emp: PeriodicElement[] ) { //the component that wants to update something, calls this fn
+    this.subjectName.next(emp); //next() will feed the value in Subject
+}
+
+getUpdate(): Observable<any> { //the receiver component calls this function
+  return this.subjectName.asObservable(); //it returns as an observable to which the receiver funtion will subscribe
+}
 
 }

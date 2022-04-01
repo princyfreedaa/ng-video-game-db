@@ -29,9 +29,17 @@ import { TodoComponent } from './component/todo/todo.component';
 import { EmployeeComponent } from './component/employee/employee.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule, MatTableModule } from '@angular/material';
-import { UserProfileComponent } from './component/user-profile/user-profile.component';
 import { MapComponent } from './component/map/map.component';
 import { AgmCoreModule } from '@agm/core';
+import { UserProfileComponent } from './component/employee/user-profile/user-profile.component';
+import { AngularCesiumModule } from 'angular-cesium';
+import { AngularCesiumWidgetsModule } from 'angular-cesium';
+import { GoogleEarthComponent } from './component/google-earth/google-earth.component';
+import { CesiumService, MapsManagerService } from 'angular-cesium';
+import { MockDataProviderService } from './component/google-earth/plane.service';
+
+
+
 
 @NgModule({
   declarations: [
@@ -44,6 +52,7 @@ import { AgmCoreModule } from '@agm/core';
     EmployeeComponent,
     UserProfileComponent,
     MapComponent,
+    GoogleEarthComponent
   ],
   imports: [
     BrowserModule,
@@ -65,11 +74,12 @@ import { AgmCoreModule } from '@agm/core';
     MatDialogModule,
     ReactiveFormsModule,
     MatInputModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyDHKauSSlrF3asDS3G70yqItxzJ6Ow6dzg'
-    })
+    AngularCesiumModule.forRoot(),
+    AngularCesiumWidgetsModule
   ],
   providers: [
+    MockDataProviderService,
+    CesiumService,MapsManagerService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpHeaderInterceptor,
